@@ -3,10 +3,17 @@
 Purpose to provide quick stock evaluation metrics for personal use. 
 
 
+Reference github: https://github.com/kaushik316/Stocksheet
+Reference quandl: https://docs.data.nasdaq.com/docs/python-time-series
+
+
 ## Quandl 
 `pip install nasdaq-data-link`
 Documentation: https://demo.quandl.com/docs-and-help
 Profile: https://data.nasdaq.com/account/profile
+
+Github Repo for nasdaqdatalink: https://github.com/Nasdaq/data-link-python/#local-api-key-environment-variable
+
 
 ### Local API Key File 
 Consistently stored in `~/.nasdaq/data_link_apikey` the client will attempt to load this file if it exists. Note: if the file exists and empty, a ValueError will be thrown.
