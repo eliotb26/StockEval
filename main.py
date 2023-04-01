@@ -37,10 +37,10 @@ import datetime
 # # show splits
 # apple.splits
 
-tdg = yf.Ticker('tdg')
-print(tdg)
-data = tdg.history()
-print(data.head())
+class StockConstants:
+    favorites_list = ["AAPL", "MSFT", "TSLA", "DDOG", "AMD", "NVDA"]
+    ETF_list = ["SPY", "VOO", "QQQ", "XLF"]
+    financial_list = ["BX", "BLK", "BRK.B", "JPM"]
 
 
 class Stock: 
@@ -63,13 +63,26 @@ class Stock:
         return f"Welcome to Information about {self.name}"
 
 
-def options_data(ticker): 
-    tick_options = ticker.option_chain()
+    def options_data(self): 
+        tick_options = self.ticker.option_chain()
+        # ACCESS BOTH THE CALLS AND PUTS AND STORE THEM IN THEIR RESPECTIVE VARIABLES
+        tick_puts = tick_options.puts
+        tick_calls = tick_options.calls
 
-    # ACCESS BOTH THE CALLS AND PUTS AND STORE THEM IN THEIR RESPECTIVE VARIABLES
-    tick_puts = tick_options.puts
-    tick_calls = tick_options.calls
 
+def test():
+    tdg = yf.Ticker('tdg')
+    print(tdg)
+    data = tdg.history()
+    print(data.head())
 
-msft = Stock("MSFT")
-print(msft)
+def main(): 
+
+    msft = Stock("MSFT")
+    print(msft)
+
+    for tick in StockConstants.favorites_list:
+        tick = Stock(tick)
+        print(tick)
+
+main()
