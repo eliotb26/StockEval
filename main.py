@@ -4,6 +4,15 @@ import yfinance as yf
 import pandas as pd
 import datetime
 
+import numpy as np
+# %matplotlib inline
+import pandas as pd
+import matplotlib.pyplot as plt
+# import pandas_datareader as pdr
+# import pandas_datareader.data as web
+# import ffn
+# import plotly.express as px
+
 
 # -----------------------------------------------------------------------
 #                           QUANDL 
@@ -42,6 +51,12 @@ class StockConstants:
     ETF_list = ["SPY", "VOO", "QQQ", "XLF"]
     financial_list = ["BX", "BLK", "BRK.B", "JPM"]
 
+class TimeConstants: 
+    default_period = ''
+    default_interval = ''
+    curr_end_date = datetime.datetime.now().strftime('%Y-%m-%d')
+    curr_period = '6mo'
+
 
 class Stock: 
     def __init__(self, stock_name) -> None:
@@ -69,6 +84,17 @@ class Stock:
         tick_puts = tick_options.puts
         tick_calls = tick_options.calls
 
+    def plot_volume_stock(self): 
+        self.ticker.history(period='5y')['Volume'].plot(label='{self.name} Volume', figsize=(15,5))
+
+
+def plot_multi_stock(stocks_arr): 
+    for stock in stocks_arr: 
+        stock.ticker.plot(label='{stock.name} Close', figsize=(15,5))
+    plt.legend()
+
+
+
 
 def test():
     tdg = yf.Ticker('tdg')
@@ -76,13 +102,16 @@ def test():
     data = tdg.history()
     print(data.head())
 
+def stock_info(stock_ticker):
+    stock = Stock(stock_ticker)
+    print(stock)
+    stock.plot_volume_stock()
+
 def main(): 
+    stock_info("MSFT")
 
-    msft = Stock("MSFT")
-    print(msft)
-
-    for tick in StockConstants.favorites_list:
-        tick = Stock(tick)
-        print(tick)
+    # for tick in StockConstants.favorites_list:
+    #     tick = Stock(tick)
+    #     print(tick)
 
 main()
