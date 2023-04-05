@@ -62,6 +62,8 @@ class Stock:
     def __init__(self, stock_name) -> None:
         self.name = stock_name
         self.ticker = yf.Ticker(self.name)
+        self.history_5y = self.ticker.history(period='5y')
+        self.ticker_close = self.history_5y['Close']
         # CALL THE MULTIPLE FUNCTIONS AVAILABLE AND STORE THEM IN VARIABLES.
         self.actions = self.ticker.get_actions()
         # self.analysis = self.ticker.get_analysis()
@@ -87,12 +89,16 @@ class Stock:
     def plot_volume_stock(self): 
         self.ticker.history(period='5y')['Volume'].plot(label='{self.name} Volume', figsize=(15,5))
 
+    def save_to_csv(self):
+        tickers_hist = self.ticker.history(period='max',interval='1m',)
+        tickers_hist.stack(level=1).rename_axis(['Date', 'Ticker']).reset_index(level=1)
+        tickers_hist.to_csv(f'{self.name}_all_data.csv')
+
 
 def plot_multi_stock(stocks_arr): 
     for stock in stocks_arr: 
         stock.ticker.plot(label='{stock.name} Close', figsize=(15,5))
     plt.legend()
-
 
 
 
@@ -110,8 +116,8 @@ def stock_info(stock_ticker):
 def main(): 
     stock_info("MSFT")
 
-    # for tick in StockConstants.favorites_list:
-    #     tick = Stock(tick)
-    #     print(tick)
+    for tick in StockConstants.favorites_list:
+        tick = Stock(tick)
+        print(tick)
 
 main()
