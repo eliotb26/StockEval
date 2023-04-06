@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from moving_avg import getMovingAvgList
+from moving_avg import getSimpleMovingAvgList
 # import pandas_datareader as pdr
 # import pandas_datareader.data as web
 # import ffn
@@ -124,7 +124,7 @@ def stockInfo(stock_ticker):
     # print(stock.institutional_holders)
 
 def getCrossMovingAvgList(stock_lst):
-    getMovingAvgList(stock_lst)
+    getSimpleMovingAvgList(stock_lst)
 
 def main(): 
     stockInfo("MSFT")

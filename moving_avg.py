@@ -23,7 +23,7 @@ def getPause():
     return pause
 
 
-def getMovingAvgList(stock_lst):
+def getSimpleMovingAvgList(stock_lst):
     interval_fast = 10
     interval_slow = 30
     # currently_holding = False
