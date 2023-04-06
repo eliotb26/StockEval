@@ -45,6 +45,36 @@ Consistently stored in `~/.nasdaq/data_link_apikey` the client will attempt to l
     - n = Number of periods in the valuation model
 
 
+## Monte Carlo 
+- Create simulations and test data from 2010-2020 and test vs real data from 2020-2022 and see how well they fit
+    - or even from 2000-2010 and see how well that fits from 2010-2020
+
+1. Price Simulation: Generate random price paths based on a stock's historical volatility to simulate potential future stock prices.
+
+2. Return Simulation: Generate random return paths based on a stock's historical returns to simulate potential future returns.
+
+3. Value at Risk (VaR) Simulation: Estimate the potential maximum loss in a portfolio using Monte Carlo simulation to model the distribution of possible returns.
+
+4. Option Pricing Simulation: Simulate the price of an option using a random walk model and calculate its expected value.
+
+5. Portfolio Optimization Simulation: Generate multiple portfolios with different combinations of assets and weights to identify the optimal portfolio based on expected returns and risk.
+
+6. Scenario Analysis Simulation: Simulate various scenarios to understand how different economic, political, or market events could affect a portfolio.
+
+7. Monte Carlo Sensitivity Analysis: Analyze how changes in key parameters such as volatility, interest rates, or inflation impact a portfolio's performance.
+
+8. Volatility Smile Simulation: Simulate the implied volatility surface of a stock option and price the option based on the simulated implied volatility.
+
+9. Monte Carlo Credit Risk Simulation: Simulate the potential losses on a credit portfolio due to default risk, based on the distribution of possible credit events.
+
+10. Monte Carlo Retirement Planning Simulation: Simulate potential outcomes for retirement planning, based on a variety of factors such as investment returns, inflation, and spending habits.
+
+
+
+
+
+
+
 ## Bonds 
 - Index Yield Curve
 
