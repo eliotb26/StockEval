@@ -102,3 +102,22 @@ To keep requirements.txt up-to-date, store all pip imports into requirments.txt
 `pip freeze > requirements.txt`
 
 `pip install -r requirements.txt`
+
+
+
+### Analysis on Stocks 
+
+
+Fundamental analysis: This involves analyzing a company's financial statements, such as its revenue, earnings, debt, and cash flow. This can help you determine whether the company is profitable, how much debt it has, and whether it has a strong balance sheet.
+
+Market analysis: This involves analyzing market trends, such as the overall direction of the stock market, the performance of the sector the company operates in, and the behavior of other market participants. This can help you understand whether the stock is overvalued or undervalued relative to the market.
+
+Growth prospects: This involves analyzing a company's growth potential, such as its market share, product pipeline, and expansion plans. This can help you determine whether the company has the potential to grow its revenue and earnings in the future.
+
+Competitive analysis: This involves analyzing a company's competitors, such as their market share, product offerings, and financial performance. This can help you understand whether the company is in a strong competitive position or not.
+
+Management analysis: This involves analyzing the company's management team, such as their track record, experience, and leadership style. This can help you determine whether the company has a strong management team that can effectively execute its strategy.
+
+Macroeconomic factors: This involves analyzing the broader economic environment, such as interest rates, inflation, and government policies. This can help you understand how the economy may impact the company's performance.
+
+Technical analysis: This involves analyzing the stock's price and volume data, such as chart patterns, trading volume, and moving averages. This can help you identify trends and patterns in the stock's price behavior, which may provide insights into future price movements.
