@@ -8,6 +8,8 @@ import numpy as np
 # %matplotlib inline
 import pandas as pd
 import matplotlib.pyplot as plt
+
+from moving_avg import getMovingAvgList
 # import pandas_datareader as pdr
 # import pandas_datareader.data as web
 # import ffn
@@ -57,7 +59,6 @@ class TimeConstants:
     curr_end_date = datetime.datetime.now().strftime('%Y-%m-%d')
     curr_period = '6mo'
 
-
 class Stock: 
     def __init__(self, stock_name) -> None:
         self.name = stock_name
@@ -66,26 +67,31 @@ class Stock:
         self.ticker_close = self.history_5y['Close']
         # CALL THE MULTIPLE FUNCTIONS AVAILABLE AND STORE THEM IN VARIABLES.
         self.actions = self.ticker.get_actions()
+        self.institutional_holders = self.ticker.get_institutional_holders()
         # self.analysis = self.ticker.get_analysis()
         # self.balance = self.ticker.get_balance_sheet()
         # self.calendar = self.ticker.get_calendar()
         # self.cf = self.ticker.get_cashflow()
         # self.info = self.ticker.get_info()
-        # self.inst_holders = self.ticker.get_institutional_holders()
         # self.news = self.ticker.get_news()
         # self.recommendations = self.ticker.get_recommendations()
         # self.sustainability = self.ticker.get_sustainability()
+    
+    def __repr__(self) -> str:
+        return f"{self.name}"
 
     def __str__(self) -> str:
         return f"Welcome to Information about {self.name}"
-
+    
+    def analyze_dividends(self):
+        return self.ticker.dividends()
 
     def options_data(self): 
         tick_options = self.ticker.option_chain()
         # ACCESS BOTH THE CALLS AND PUTS AND STORE THEM IN THEIR RESPECTIVE VARIABLES
         tick_puts = tick_options.puts
         tick_calls = tick_options.calls
-
+ 
     def plot_volume_stock(self): 
         self.ticker.history(period='5y')['Volume'].plot(label='{self.name} Volume', figsize=(15,5))
 
@@ -95,29 +101,45 @@ class Stock:
         tickers_hist.to_csv(f'{self.name}_all_data.csv')
 
 
-def plot_multi_stock(stocks_arr): 
+def plotMultiStock(stocks_arr): 
     for stock in stocks_arr: 
         stock.ticker.plot(label='{stock.name} Close', figsize=(15,5))
     plt.legend()
 
+def printBlank():
+    print('*'*20)
+
+# def test():
+#     tdg = yf.Ticker('tdg')
+#     print(tdg)
+#     data = tdg.history()
+#     print(data.head())
 
 
-def test():
-    tdg = yf.Ticker('tdg')
-    print(tdg)
-    data = tdg.history()
-    print(data.head())
-
-def stock_info(stock_ticker):
+def stockInfo(stock_ticker):
     stock = Stock(stock_ticker)
     print(stock)
     stock.plot_volume_stock()
+    # print_blank()
+    # print(stock.institutional_holders)
+
+def getCrossMovingAvgList(stock_lst):
+    getMovingAvgList(stock_lst)
 
 def main(): 
-    stock_info("MSFT")
+    stockInfo("MSFT")
 
+    stock_lst = []
     for tick in StockConstants.favorites_list:
-        tick = Stock(tick)
-        print(tick)
+        stock = Stock(tick)
+        stock_lst.append(stock)
+
+    print(stock_lst)        
+    getCrossMovingAvgList(stock_lst)
+
+
+    # for tick in StockConstants.favorites_list:
+    #     tick = Stock(tick)
+    #     print(tick)
 
 main()
